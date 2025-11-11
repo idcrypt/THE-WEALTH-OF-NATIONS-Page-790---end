@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-  <title>THE WEALTH OF NATIONS I - IX (Book I - Book IV)</title>
+  <title>THE WEALTH OF NATIONS Page 790 end</title>
 
   <!--
     Catatan: file ini sengaja verbose (banyak komentar & struktur) agar mudah dibaca.
-    Total halaman diatur oleh TOTAL_PAGES (default 784).
+    Total halaman diatur oleh TOTAL_PAGES (default 464).
     Pastikan:
-      - images/page1.png ... images/page784.png tersedia
+      - images/page1.png ... images/page464.png tersedia
       - sounds/flip.mp3 tersedia
       - js/jquery.min.js dan js/turn.min.js tersedia
   -->
@@ -253,11 +253,11 @@
   <!-- App -->
   <div class="wrap" id="app" style="display:none;">
     <header>
-      <h1>THE WEALTH OF NATIONS I - IX (Book I - Book IV)</h1>
+      <h1>THE WEALTH OF NATIONS Page 790 end</h1>
       <div style="display:flex;gap:10px;align-items:center">
         <button id="fullscreenToggle" class="btn secondary">Toggle Fullscreen</button>
         <button id="themeToggle" class="btn secondary">🌙 Theme</button>
-        <div id="pageInfo" class="info">Halaman 1 / 784</div>
+        <div id="pageInfo" class="info">Halaman 1 / 464</div>
       </div>
     </header>
 
@@ -278,7 +278,7 @@
 
       <div class="goto">
         <label style="color:var(--muted)">Ke halaman</label>
-        <input id="gotoInput" type="number" min="1" max="784" value="1">
+        <input id="gotoInput" type="number" min="1" max="464" value="1">
         <button id="gotoBtn" class="btn">Go</button>
       </div>
     </div>
@@ -309,11 +309,11 @@
     /* =========================
        CONFIG & STATE
        ========================= */
-    const TOTAL_PAGES = 784;     // sesuaikan kalau berubah
+    const TOTAL_PAGES = 464;     // sesuaikan kalau berubah
     const PER_BLOCK = 10;        // pagination per block
     const A4_ASPECT = 1.41421356; // tinggi/lebar ≈ 297/210
-    const MAX_BOOK_WIDTH = 784; // maksimal lebar book (adjustable)
-    const PRELOAD_COUNT = 784;    // halaman pertama yang dipreload sebelum sembunyikan loader
+    const MAX_BOOK_WIDTH = 464; // maksimal lebar book (adjustable)
+    const PRELOAD_COUNT = 464;    // halaman pertama yang dipreload sebelum sembunyikan loader
 
     let currentPage = 1;         // halaman aktif (1-based)
     let currentBlock = 1;
@@ -711,35 +711,6 @@
        Progress, Juz, Bookmark — additions without removing original logic
        ========================= */
 
-    // Build juz navigation based on TOTAL_PAGES distribution (even split) — user can adjust mapping if needed
-    function computeJuzStarts(){
-      const arr = [];
-      const per = TOTAL_PAGES / 6;
-      for(let i=0;i<10;i++){
-        const page = Math.max(1, Math.round(i * per) + 1); // 1-based
-        arr.push(page);
-      }
-      return arr;
-    }
-
-    // Manual juz start mapping — sesuai mushaf Madinah (604 halaman)
-// Sesuaikan nomor halamannya dengan versi PDF / image kamu
-const juzStarts = [
-  48,  // Juz 2
-  340,  // Juz 3
-  452,  // Juz 4
-  498
-];
-
-
-    function buildJuzNav(){
-      const $nav = $("#juzNav");
-      $nav.empty();
-      for(let i=1;i<=4;i++){
-        const btn = $("<button>").text(`BAB ${i}`).on("click", ()=>goTo(juzStarts[i-1]));
-        $nav.append(btn);
-      }
-    }
     // Bookmark controls
     function saveBookmark(){
       localStorage.setItem("lastPageQuran", currentPage);
